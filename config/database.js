@@ -1,6 +1,6 @@
 
 module.exports = {
 
-    'url' : 'mongodb://localhost/humanTracking'
+    'url' : 'mongodb://0.0.0.0/humanTracking'
 
 };
