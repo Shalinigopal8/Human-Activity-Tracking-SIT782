@@ -8,7 +8,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+
 var configDB = require('./config/database.js');
+
 mongoose.connect(configDB.url);
 require('./config/passport')(passport);
 app.use(cookieParser());
@@ -25,8 +27,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'upload')));
 
 require('./app/routes.js')(app, passport);
 
+
 app.listen(port);
-console.log('The magic happens on port ' + port);
+console.log('Listening to ' + port);

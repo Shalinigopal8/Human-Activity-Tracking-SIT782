@@ -9,12 +9,22 @@
 <h1>Lets import some excel files !!!!</h1>
 
 
-<form method="post" action="/upload/" enctype="multipart/form-data">
-    <input type="file" name="myfile">
-    <button type="submit">Upload</button>
-</form>
-<p>File uploaded at: <a href="{{ uploaded_file_url }}"></a></p>
+<form method="post" action="/fileUpload/" enctype="multipart/form-data">
+    <div class="container">
+        <div class="row">
+            <input type="file" name="myfile">
+        </div>
+        <br>
+        <div class="row">
+            <button class="btn-primary" type="submit">Upload</button>
+        </div>
 
+    </div>
+</form>
+<br>
+<% if (message.length > 0) { %>
+<p>File uploaded at: <a href="<%= uploaded_file_url %>" download><%= uploaded_file_url %></a></p>
+<% } %>
 </body>
 
 </html>
