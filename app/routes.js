@@ -1,6 +1,9 @@
 var multer = require('multer');
 var upload = multer({dest: 'upload/'});
 var fs = require('fs');
+var Project = require('../app/models/projects');
+var Criteria = require('../app/models/criteria');
+var Participant = require('../app/models/participant');
 module.exports = function (app, passport) {
 
     app.get('/', function (req, res) {
@@ -12,7 +15,20 @@ module.exports = function (app, passport) {
 
 
     app.get('/createProject', isLoggedIn, function (req, res) {
-        res.render('createProject.ejs', {
+        res.render('AddNewProjects.ejs', {
+            message: "",
+            user: req.user
+        });
+    });
+    app.get('/addCriteria', isLoggedIn, function (req, res) {
+        res.render('AddCriteria.ejs', {
+            message: "",
+            user: req.user
+        });
+    });
+    app.get('/addParticipant', isLoggedIn, function (req, res) {
+        res.render('AddNewParticipants.ejs', {
+            message: "",
             user: req.user
         });
     });
@@ -38,6 +54,60 @@ module.exports = function (app, passport) {
     app.get('/signup', function (req, res) {
         res.render('signup.ejs', {message: req.flash('signupMessage')});
     });
+    app.post('/saveProject', function (req, res) {
+        if (req && req.body) {
+            console.log("request", req.body);
+            var projectInstance = new Project(req.body);
+
+            // Save the new model instance, passing a callback
+            projectInstance.save(function (err) {
+                if (err) return handleError(err);
+                // saved!
+            });
+
+            res.render('AddNewProjects.ejs', {
+                message: "Project Successfully Saved",
+                user: req.user
+            });
+        }
+
+    });
+    app.post('/saveCriteria', function (req, res) {
+        if (req && req.body) {
+            console.log("request", req.body);
+            var criteriaInstance = new Criteria(req.body);
+
+            // Save the new model instance, passing a callback
+            criteriaInstance.save(function (err) {
+                if (err) return handleError(err);
+                // saved!
+            });
+
+            res.render('AddCriteria.ejs', {
+                message: "Criteria Successfully Saved",
+                user: req.user
+            });
+        }
+
+    });
+    app.post('/saveParticipant', function (req, res) {
+        if (req && req.body) {
+            console.log("request", req.body);
+            var participant = new Participant(req.body);
+
+            // Save the new model instance, passing a callback
+            participant.save(function (err) {
+                if (err) return handleError(err);
+                // saved!
+            });
+
+            res.render('AddNewParticipants.ejs', {
+                message: "Participant Added Successfully",
+                user: req.user
+            });
+        }
+
+    });
 
 
     app.post('/signup', passport.authenticate('local-signup', {
@@ -61,7 +131,7 @@ module.exports = function (app, passport) {
         var dest = fs.createWriteStream(target_path);
         src.pipe(dest);
         src.on('end', function () {
-            res.render('index.ejs', {message: 'File uploaded successfully', uploaded_file_url:fn})
+            res.render('index.ejs', {message: 'File uploaded successfully', uploaded_file_url: fn})
         });
         src.on('error', function (err) {
             res.render('error');

@@ -1,15 +1,13 @@
 var mongoose = require('mongoose');
 
 
-var projectSchema = mongoose.Schema({
-    projectName: String,
-    projectDescription: String,
-    startDate: String,
-    endDate: String
-
+var criteriaSchema = mongoose.Schema({
+    name: String,
+    id: String,
+    field: String
 });
 
 
 
 
-module.exports = mongoose.model('Project', projectSchema);
+module.exports = mongoose.model('Criteria', criteriaSchema);

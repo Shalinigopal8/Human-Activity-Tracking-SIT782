@@ -40,7 +40,7 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Project Participants</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-puzzle-piece"></i><a href="ui-buttons.html">Add Participants</a></li>
+                            <li><i class="fa fa-puzzle-piece"></i><a href="/addParticipant">Add Participants</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
@@ -52,7 +52,7 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Analysis Criteria</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-th"></i><a href="forms-basic.html">Add Criteria</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="/addCriteria">Add Criteria</a></li>
                         </ul>
                     </li>
 
@@ -81,21 +81,24 @@
 	
 			</div>
 
-			<form class="detail-form">
+			<form class="detail-form" action="/saveParticipant" method="post">
+                <% if (message.length > 0) { %>
+                <div style="color: green; padding-left: 20px" ><%= message %></div>
+                <% } %>
 				<div class="input-text">
 					<span class="label">Participant ID:</span>
-					<input class="textbox" type="text" name="name" placeholder="Participant ID">
+					<input class="textbox" type="text" name="id" placeholder="Participant ID">
 					
 				</div>
 
 				<div class="input-text">
 					<span class="label">Participant Name:</span>
-					<input class="textbox" type="text" name="description" placeholder="Participant Name">
+					<input class="textbox" type="text" name="name" placeholder="Participant Name">
 				</div>
 
 				<div class="input-text">
 					<span class="label">Date of Birth:</span>
-					<input class="textbox" type="date" name="bday" placeholder="Date of Birth">
+					<input class="textbox" type="date" name="dob" placeholder="Date of Birth">
 				</div>
 
 				

@@ -6,7 +6,7 @@
       
     <link rel="stylesheet" href="workspace-assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="workspace-assets/css/font-awesome.min.css">
-    <link rel="stylesheet" href="workspace-assets/css/style-workspace.css">   
+    <link rel="stylesheet" href="workspace-assets/css/style-workspace.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	
@@ -40,7 +40,7 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Project Participants</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-puzzle-piece"></i><a href="ui-buttons.html">Add Participants</a></li>
+                            <li><i class="fa fa-puzzle-piece"></i><a href="/addParticipant">Add Participants</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
@@ -52,7 +52,7 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Analysis Criteria</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-th"></i><a href="forms-basic.html">Add Criteria</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="/addCriteria">Add Criteria</a></li>
                         </ul>
                     </li>
 
@@ -81,26 +81,29 @@
 	
 			</div>
 
-			<form class="detail-form">
+			<form class="detail-form" action="/saveProject" method="post">
+                <% if (message.length > 0) { %>
+                <div style="color: green; padding-left: 20px" ><%= message %></div>
+                <% } %>
 				<div class="input-text">
 					<span class="label">Project Name:</span>
-					<input class="textbox" type="text" name="name" placeholder="Enter project name">
+					<input class="textbox" type="text" name="projectName" placeholder="Enter project name">
 					
 				</div>
 
 				<div class="input-text">
 					<span class="label">Project Description:</span>
-					<input class="textbox" type="text" name="description" placeholder="Enter project description">
+					<input class="textbox" type="text" name="projectDescription" placeholder="Enter project description">
 				</div>
 
 				<div class="input-text">
 					<span class="label">Start Date:</span>
-					<input class="textbox" type="date" name="bday" placeholder="Start Date">
+					<input class="textbox" type="date" name="startDate" placeholder="Start Date">
 				</div>
 				
 				<div class="input-text">
 					<span class="label">End Date:</span>
-					<input class="textbox" type="date" name="bday" placeholder="End Date">
+					<input class="textbox" type="date" name="endDate" placeholder="End Date">
 				</div>
 
 				<div class="form-btn">
