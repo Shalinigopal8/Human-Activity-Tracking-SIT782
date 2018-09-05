@@ -9,6 +9,9 @@ module.exports = function (app, passport) {
     app.get('/', function (req, res) {
         res.render('Home.ejs', {message: ""});
     });
+    app.get('/upload', function (req, res) {
+        res.render('index.ejs', {message: ""});
+    });
     app.get('/about', function (req, res) {
         res.render('about.ejs', {message: ""});
     });
@@ -41,6 +44,15 @@ module.exports = function (app, passport) {
             user: req.user
         });
     });
+    app.get('/projectList', isLoggedIn, function (req, res) {
+
+        Project.find({userId:req.user._id},function(err,projects){
+            if (err) return handleError(err);
+            res.json(projects);
+        });
+
+
+    });
 
 
     app.get('/logout', function (req, res) {
@@ -65,7 +77,8 @@ module.exports = function (app, passport) {
     });
     app.post('/saveProject', function (req, res) {
         if (req && req.body) {
-            console.log("request", req.body);
+
+            req.body.userId = req.user._id;
             var projectInstance = new Project(req.body);
 
             // Save the new model instance, passing a callback
@@ -83,7 +96,7 @@ module.exports = function (app, passport) {
     });
     app.post('/saveCriteria', function (req, res) {
         if (req && req.body) {
-            console.log("request", req.body);
+            req.body.userId = req.user._id;
             var criteriaInstance = new Criteria(req.body);
 
             // Save the new model instance, passing a callback
@@ -102,6 +115,7 @@ module.exports = function (app, passport) {
     app.post('/saveParticipant', function (req, res) {
         if (req && req.body) {
             console.log("request", req.body);
+            req.body.userId = req.user._id;
             var participant = new Participant(req.body);
 
             // Save the new model instance, passing a callback
