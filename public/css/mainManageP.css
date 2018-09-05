@@ -45,20 +45,6 @@ input[type=date]::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 
-.container {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  padding: 15px;
-  background: transparent;
-  position: relative;
-  z-index: 1;
-}
-
-
-
 .container-main {
   width: 100%;  
   min-height: 100vh;
@@ -166,6 +152,18 @@ input[type=date]::-webkit-outer-spin-button {
   margin-bottom: 26px;
 }
 
+.input-text-dropdown {
+  width: 100%;
+  position: relative;
+  margin-bottom: 26px;
+}
+
+.input-text-btn {
+  width: 100%;
+  position: relative;
+  margin-bottom: 26px;
+}
+
 .label {
   font-family: Poppins-Regular;
   font-size: 15px;
@@ -218,11 +216,11 @@ input.textbox {
 
 }
 
+
+
 .form-btn-1:hover {
   background-color: #333333;
 }
-
-
 
 
 

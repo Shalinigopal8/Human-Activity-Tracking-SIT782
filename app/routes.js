@@ -7,7 +7,10 @@ var Participant = require('../app/models/participant');
 module.exports = function (app, passport) {
 
     app.get('/', function (req, res) {
-        res.render('index.ejs', {message: ""});
+        res.render('Home.ejs', {message: ""});
+    });
+    app.get('/about', function (req, res) {
+        res.render('about.ejs', {message: ""});
     });
     app.get('/unauthorized', function (req, res) {
         res.render('unauthorized.ejs');
@@ -16,6 +19,12 @@ module.exports = function (app, passport) {
 
     app.get('/createProject', isLoggedIn, function (req, res) {
         res.render('AddNewProjects.ejs', {
+            message: "",
+            user: req.user
+        });
+    });
+    app.get('/manageProject', isLoggedIn, function (req, res) {
+        res.render('manageProjects.ejs', {
             message: "",
             user: req.user
         });

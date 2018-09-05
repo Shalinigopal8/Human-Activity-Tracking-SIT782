@@ -2,13 +2,26 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Workspace</title>
+    <title>Manage Projects</title>
       
     <link rel="stylesheet" href="workspace-assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="workspace-assets/css/font-awesome.min.css">
-    <link rel="stylesheet" href="workspace-assets/css/style-workspace.css">
+    <link rel="stylesheet" href="workspace-assets/css/style-workspace.css">   
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/mainManageP.css">
+	
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+       
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var dropDown = [" ","color", "shape", "tool"];
+          var dropDownID = [" ","orange", "square", "hammer"];
+                $("#dropDown").select2({
+                  data: dropDown
+                });
+            });
+        </script>
 	
 	
 </head>
@@ -40,7 +53,7 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Project Participants</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-puzzle-piece"></i><a href="/addParticipant">Add Participants</a></li>
+                            <li><i class="fa fa-puzzle-piece"></i><a href="ui-buttons.html">Add Participants</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
@@ -52,7 +65,7 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Analysis Criteria</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-th"></i><a href="/addCriteria">Add Criteria</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="forms-basic.html">Add Criteria</a></li>
                         </ul>
                     </li>
 
@@ -76,43 +89,50 @@
 		<div class="details">
 			<div class="form-title-image" style="background-image: url(img/bg-01.jpg);">
 				<span class="form-title-image-1">
-					New Project Details 
+					Manage Projects 
 				</span>
 	
 			</div>
 
-			<form class="detail-form" action="/saveProject" method="post">
-                <% if (message.length > 0) { %>
-                <div style="color: green; padding-left: 20px" ><%= message %></div>
-                <% } %>
-				<div class="input-text">
-					<span class="label">Project Name:</span>
-					<input class="textbox" type="text" name="projectName" placeholder="Enter project name">
+			<form class="detail-form">
+		
+
+
+				<div class="input-text-dropdown">
+					<span class="label">Select Project:</span>
+					<select id="dropDown" style="width:300px; margin-top:20px">
+            <!-- Dropdown List Option -->
+            </select>
 					
 				</div>
 
-				<div class="input-text">
-					<span class="label">Project Description:</span>
-					<input class="textbox" type="text" name="projectDescription" placeholder="Enter project description">
-				</div>
-
-				<div class="input-text">
-					<span class="label">Start Date:</span>
-					<input class="textbox" type="date" name="startDate" placeholder="Start Date">
-				</div>
-				
-				<div class="input-text">
-					<span class="label">End Date:</span>
-					<input class="textbox" type="date" name="endDate" placeholder="End Date">
-				</div>
-
-				<div class="form-btn">
+				<div class="input-text-btn">
+					<span class="label">Manage Project:</span>
 					<button class="form-btn-1">
 						<span>
-							Next
+							Click to Manage
 						</span>
-					</button>
 				</div>
+
+				<div class="input-text-btn">
+					<span class="label">Manage Participant:</span>
+					<button class="form-btn-1">
+						<span>
+							Click to Manage
+						</span>
+				</div>
+				
+				<div class="input-text-btn">
+					<span class="label">Manage Dataset:</span>
+					<button class="form-btn-1">
+						<span>
+							Click to Manage
+						</span>
+				</div>
+
+
+				
+				
 			</form>
 		</div>
 	</div>
