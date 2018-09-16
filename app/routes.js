@@ -51,7 +51,16 @@ module.exports = function (app, passport) {
 
         Project.find({userId:req.user._id},function(err,projects){
             if (err) return handleError(err);
-            res.json({"message":"Login succesfful"});
+            res.json(projects);
+        });
+
+
+    });
+    app.get('/criteriaList', isLoggedIn, function (req, res) {
+    console.log("criteria list");
+        Criteria.find({userId:req.user._id},function(err,criterias){
+            if (err) return handleError(err);
+            res.json(criterias);
         });
 
 
