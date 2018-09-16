@@ -18,6 +18,9 @@ module.exports = function (app, passport) {
     app.get('/runExperiment', function (req, res) {
         res.render('runExperiment.ejs', {message: ""});
     });
+    app.get('/projectParticipants', function (req, res) {
+        res.render('ProjectParticipants.ejs', {message: ""});
+    });
     app.get('/unauthorized', function (req, res) {
         res.render('unauthorized.ejs');
     });
@@ -61,6 +64,14 @@ module.exports = function (app, passport) {
         Criteria.find({userId:req.user._id},function(err,criterias){
             if (err) return handleError(err);
             res.json(criterias);
+        });
+
+
+    });
+    app.get('/participantList', isLoggedIn, function (req, res) {
+        Participant.find({userId:req.user._id},function(err,participant){
+            if (err) return handleError(err);
+            res.json(participant);
         });
 
 
