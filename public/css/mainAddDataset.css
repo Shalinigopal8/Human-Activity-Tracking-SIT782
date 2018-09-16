@@ -84,7 +84,7 @@ input[type=date]::-webkit-outer-spin-button {
 
 .details {
   width: 600px;
-  height: 660px;
+  height: 700px;
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
@@ -137,8 +137,8 @@ input[type=date]::-webkit-outer-spin-button {
 }
 
 .detail-form {
-  width: 100%;
-  display: flex;
+  width: 500px;
+  margin-left: 50px;
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 43px 88px 57px 190px;
@@ -202,6 +202,8 @@ input.textbox {
 
 .form-btn-1 {
   display: flex;
+  margin-left: 210px;
+  margin-top: 30px;
   justify-content: center;
   align-items: center;
   padding: 0 20px;

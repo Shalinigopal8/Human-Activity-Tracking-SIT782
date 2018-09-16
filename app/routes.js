@@ -1,5 +1,5 @@
 var multer = require('multer');
-var upload = multer({dest: 'upload/'});
+var upload = multer({dest: 'upload'});
 var fs = require('fs');
 var Project = require('../app/models/projects');
 var Criteria = require('../app/models/criteria');
@@ -10,10 +10,13 @@ module.exports = function (app, passport) {
         res.render('Home.ejs', {message: ""});
     });
     app.get('/upload', function (req, res) {
-        res.render('index.ejs', {message: ""});
+        res.render('uploadData.ejs', {message: ""});
     });
     app.get('/about', function (req, res) {
         res.render('about.ejs', {message: ""});
+    });
+    app.get('/runExperiment', function (req, res) {
+        res.render('runExperiment.ejs', {message: ""});
     });
     app.get('/unauthorized', function (req, res) {
         res.render('unauthorized.ejs');
@@ -48,7 +51,7 @@ module.exports = function (app, passport) {
 
         Project.find({userId:req.user._id},function(err,projects){
             if (err) return handleError(err);
-            res.json(projects);
+            res.json({"message":"Login succesfful"});
         });
 
 

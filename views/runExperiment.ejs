@@ -2,14 +2,26 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Add Datasets</title>
+    <title>Manage Projects</title>
       
     <link rel="stylesheet" href="workspace-assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="workspace-assets/css/font-awesome.min.css">
     <link rel="stylesheet" href="workspace-assets/css/style-workspace.css">   
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
-    <link href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+	
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+       
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var dropDown = [" ","color", "shape", "tool"];
+          var dropDownID = [" ","orange", "square", "hammer"];
+                $("#dropDown").select2({
+                  data: dropDown
+                });
+            });
+        </script>
 	
 	
 </head>
@@ -23,7 +35,7 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="./">Human Activity Tracking</a>
+                <a class="navbar-brand" href="../../../Downloads">Human Activity Tracking</a>
                 
             </div>
 
@@ -72,30 +84,59 @@
 
     <div id="right-panel" class="right-panel" style="background-image: url(img/header.jpg); ">
 
-       <div class="container-upload">
+       <div class="container-main">
 	  
-		<div class="details-upload">
+		<div class="details">
 			<div class="form-title-image" style="background-image: url(img/bg-01.jpg);">
 				<span class="form-title-image-1">
-					Add Datasets
+					Run Experiment
 				</span>
 	
 			</div>
 
 			<form class="detail-form">
-				<div class="input-text">
-					<span class="label">Select File:</span>
-					<input class="textbox" type="text" name="name" placeholder="Select File">
-					
-				</div>				
+		
+
+
+				<div class="input-text-dropdown">
+					<span class="label">Data Set:</span>
+					<select id="dropDown" style="width:300px; margin-top:13px">
+            <!-- Dropdown List Option -->
+            </select>
 				
-				<div class="form-btn">
-					<button class="form-btn-1">
-						<span>
-							Upload
-						</span>
-					</button>
 				</div>
+			
+
+				<div class="input-text-dropdown">
+					<span class="label">Criteria:</span>
+					<select id="dropDown" style="width:300px; margin-top:13px">
+					<!-- Dropdown List option -->
+					</select>
+					</div>
+
+				
+				
+				<div class="input-text-btn">
+				
+                    <button class="form-btn-1" style="margin-top:13px">
+						<span>
+							Run Experiment
+						</span>
+                    </button>
+				</div>
+				
+				<div  class="input-text-btn">
+				
+				<button class="form-btn-1">
+						<span>
+							Download
+						</span>
+                </button>
+				</div>
+
+
+				
+				
 			</form>
 		</div>
 	</div>
