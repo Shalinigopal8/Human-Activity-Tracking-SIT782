@@ -2,15 +2,48 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Project Participants</title>
-      
+    <title>Analysis Criteria</title>
+
     <link rel="stylesheet" href="workspace-assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="workspace-assets/css/font-awesome.min.css">
     <link rel="stylesheet" href="workspace-assets/css/style-workspace.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
-
+    <link href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="css/mainMyProject.css">
+    <script type="text/javascript">
+        function reqListener () {
+            // console.log(JSON.parse(this.responseText));
+            //let dropDown = [" ","color", "shape", "tool"];
+            let dropDown = JSON.parse(this.responseText);
+            _.each(dropDown,function(each){
+                let tr = document.createElement("tr");
+                let td1 = document.createElement("td");
+                td1.innerText = each.id;
+                let td2 = document.createElement("td");
+                td2.innerText = each.name;
+
+                let td3 = document.createElement("td");
+                let select = document.createElement("select");
+                select.id = "dropdown";
+                select.style.width = 100%
+                td3.appendChild(select);
+
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                tr.appendChild(td3);
+                let table  = document.querySelector("#project");
+                table.appendChild(tr);
+            })
+        }
+        let oReq = new XMLHttpRequest();
+        oReq.addEventListener("load", reqListener);
+        oReq.open("GET", "/criteriaList");
+        oReq.send();
+
+
+    </script>
+
 	
 <style>
 #project {
@@ -31,38 +64,10 @@
     background-color: #4CAF50;
     color: white;
 }
-</style>
-    <script type="text/javascript">
-        function reqListener () {
-            // console.log(JSON.parse(this.responseText));
-            //let dropDown = [" ","color", "shape", "tool"];
-            let dropDown = JSON.parse(this.responseText);
-           _.each(dropDown,function(each){
-               let tr = document.createElement("tr");
-               let td1 = document.createElement("td");
-               td1.innerText = each.id;
-               let td2 = document.createElement("td");
-               td2.innerText = each.name;
-               
-               let td3 = document.createElement("td");
-               td3.innerText = each.dob;
-               tr.appendChild(td1);
-               tr.appendChild(td2);
-               tr.appendChild(td3);
-               let table  = document.querySelector("#project");
-               table.appendChild(tr);
-            })
-        }
-        let oReq = new XMLHttpRequest();
-        oReq.addEventListener("load", reqListener);
-        oReq.open("GET", "/participantList");
-        oReq.send();
-
-
-    </script>
-
+</style>	
 </head>
 <body>
+ 
 
 
        <aside id="left-panel" class="left-panel">
@@ -72,14 +77,15 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="">Human Activity Tracking</a>
+                <a class="navbar-brand" href="../../LatesHAT/SIT782/Human%20Activity%20Tracking%20Updated">Human Activity Tracking</a>
                 
             </div>
 
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="menu-item-has-children dropdown">
-                        <a href="/createProject" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-dashboard"></i>My Projects</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false"> <i class="menu-icon fa fa-dashboard"></i>My Projects</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-dashboard"></i><a href="/manageProject">Manage Projects</a></li>
                             <li><i class="menu-icon fa fa-dashboard"></i><a href="/createProject">New Projects</a></li>
@@ -88,20 +94,23 @@
 
 
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Project Participants</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Project Participants</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="fa fa-puzzle-piece"></i><a href="/addParticipant">Add Participants</a></li>
                             <li><i class="fa fa-puzzle-piece"></i><a href="/projectParticipants">List Participants</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Datasets</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Datasets</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="fa fa-table"></i><a href="/upload">Add Datasets</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Analysis Criteria</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Analysis Criteria</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-th"></i><a href="/addCriteria">Add Criteria</a></li>
                             <li><i class="menu-icon fa fa-th"></i><a href="/listCriteria">Analysis Criteria</a></li>
@@ -109,9 +118,11 @@
                     </li>
 
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Run Experiment</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Run Experiment</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/runExperiment">Run Experiment</a></li>
+                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/runExperiment">Run
+                                    Experiment</a></li>
 
                         </ul>
                     </li>
@@ -121,7 +132,7 @@
         </nav>
     </aside>
 
-    <div id="right-panel" class="right-panel" style="background-image: url(/img/header.jpg); ">
+    <div id="right-panel" class="right-panel" style="background-image: url(img/header.jpg); ">
 	<a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
 
        <div class="container-main">
@@ -129,7 +140,7 @@
 		<div class="details">
 			<div class="form-title-image" style="background-image: url(img/bg-01.jpg);">
 				<span class="form-title-image-1">
-					Project Participants
+					Analysis Criteria
 				</span>
 	
 			</div>
@@ -137,9 +148,9 @@
 			
 				<table id = "project">
 				<tr>
-					<th> Participant ID </th>
-					<th> Participant Name </th>
-					<th> DOB </th>
+					<th> Criteria ID </th>
+					<th> Criteria Name </th>
+					<th> Order</th>
 					
 				</tr>
 
@@ -148,8 +159,8 @@
 	</div>
     </div>
 
-    <script src="workspace-assets/js/vendor/jquery-2.1.4.min.js"></script>
-    <script src="workspace-assets/js/plugins.js"></script>
-    <script src="workspace-assets/js/main.js"></script>
+       <script src="workspace-assets/js/vendor/jquery-2.1.4.min.js"></script>
+       <script src="workspace-assets/js/plugins.js"></script>
+       <script src="workspace-assets/js/main.js"></script>
 </body>
 </html>

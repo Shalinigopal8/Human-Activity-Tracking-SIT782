@@ -18,6 +18,9 @@ module.exports = function (app, passport) {
     app.get('/runExperiment', function (req, res) {
         res.render('runExperiment.ejs', {message: ""});
     });
+    app.get('/listCriteria', function (req, res) {
+        res.render('AnalysisCriteria.ejs', {message: ""});
+    });
     app.get('/projectParticipants', function (req, res) {
         res.render('ProjectParticipants.ejs', {message: ""});
     });
@@ -76,6 +79,7 @@ module.exports = function (app, passport) {
 
 
     });
+
 
 
     app.get('/logout', function (req, res) {
@@ -177,7 +181,7 @@ module.exports = function (app, passport) {
         var dest = fs.createWriteStream(target_path);
         src.pipe(dest);
         src.on('end', function () {
-            res.render('index.ejs', {message: 'File uploaded successfully', uploaded_file_url: fn})
+            res.render('uploadData.ejs', {message: 'File uploaded successfully', uploaded_file_url: fn})
         });
         src.on('error', function (err) {
             res.render('error');
