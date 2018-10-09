@@ -3,7 +3,9 @@ var upload = multer({dest: 'upload'});
 var fs = require('fs');
 var Project = require('../app/models/projects');
 var Criteria = require('../app/models/criteria');
+var User = require('../app/models/user');
 var Participant = require('../app/models/participant');
+const LocalStrategy = require('passport-local').Strategy;
 module.exports = function (app, passport) {
 
     app.get('/', function (req, res) {
@@ -27,6 +29,7 @@ module.exports = function (app, passport) {
     app.get('/projectParticipants', function (req, res) {
         res.render('ProjectParticipants.ejs', {message: ""});
     });
+
     app.get('/unauthorized', function (req, res) {
         res.render('unauthorized.ejs');
     });
@@ -103,7 +106,7 @@ module.exports = function (app, passport) {
     }));
 
     app.get('/signup', function (req, res) {
-        res.render('signup.ejs', {message: req.flash('signupMessage')});
+        res.render('signup.ejs', {message: ""});
     });
     app.post('/saveProject', function (req, res) {
         if (req && req.body) {
@@ -164,11 +167,56 @@ module.exports = function (app, passport) {
 
 
     app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect: '/profile',
+        successRedirect: '/createProject',
         failureRedirect: '/signup',
         failureFlash: true //
     }));
+    passport.use( 'signup',new LocalStrategy({
+            usernameField : 'email',
+            passwordField : 'password',
+            passReqToCallback : true
+        },
+        function(req, email, password, done) {
+            findOrCreateUser = function(){
+                // find a user in Mongo with provided username
+                User.findOne({email: email},function(err, user) {
+                    // In case of any error return
+                    if (err){
+                        console.log('Error in SignUp: '+err);
+                        return done(err);
+                    }
+                    // already exists
+                    if (user) {
+                        console.log('User already exists');
+                        return done(null, false, {message:'user already exists'});
+                    } else {
+                        // if there is no user with that email
+                        // create the user
 
+                        var newUser = new User();
+                        // set the user's local credentials
+
+                        newUser.password = createHash(req.param('password'));
+                        newUser.email = req.param('email');
+
+                        console.log(newUser.name);
+                        // save the user
+                        newUser.save(function(err) {
+                            if (err){
+                                console.log('Error in Saving user: '+err);
+                                throw err;
+                            }
+                            console.log('User Registration succesful');
+                            return done(null, newUser);
+                        });
+                    }
+                });
+            };
+
+            // Delay the execution of findOrCreateUser and execute
+            // the method in the next tick of the event loop
+            process.nextTick(findOrCreateUser);
+        }));
 
     app.post('/fileUpload', upload.single('myfile'), function (req, res, next) {
         /** When using the "single"
