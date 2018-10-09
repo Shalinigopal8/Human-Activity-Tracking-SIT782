@@ -21,6 +21,9 @@ module.exports = function (app, passport) {
     app.get('/listCriteria', function (req, res) {
         res.render('AnalysisCriteria.ejs', {message: ""});
     });
+    app.get('/listProject', function (req, res) {
+        res.render('listProjects.ejs', {message: ""});
+    });
     app.get('/projectParticipants', function (req, res) {
         res.render('ProjectParticipants.ejs', {message: ""});
     });
