@@ -2,82 +2,59 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Analysis Criteria</title>
-
+    <title>Add Datasets</title>
+      
     <link rel="stylesheet" href="workspace-assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="workspace-assets/css/font-awesome.min.css">
-    <link rel="stylesheet" href="workspace-assets/css/style-workspace.css">
+    <link rel="stylesheet" href="workspace-assets/css/style-workspace.css">   
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
-    <link href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="css/mainMyProject.css">
-    <script type="text/javascript">
-        function reqListener () {
-            // console.log(JSON.parse(this.responseText));
-            //let dropDown = [" ","color", "shape", "tool"];
-            let dropDown = JSON.parse(this.responseText);
-            _.each(dropDown,function(each){
-                let tr = document.createElement("tr");
-                let td1 = document.createElement("td");
-                td1.innerText = each.id;
-                let td2 = document.createElement("td");
-                td2.innerText = each.name;
-
-                let td3 = document.createElement("td");
-                let select = document.createElement("select");
-                select.id = "dropdown";
-                select.style.width = 100%
-                td3.appendChild(select);
-
-                tr.appendChild(td1);
-                tr.appendChild(td2);
-                tr.appendChild(td3);
-                let table  = document.querySelector("#project");
-                table.appendChild(tr);
-            })
-        }
-        let oReq = new XMLHttpRequest();
-        oReq.addEventListener("load", reqListener);
-        oReq.open("GET", "/criteriaList");
-        oReq.send();
-
-
-    </script>
-
+	<link rel="stylesheet" type="text/css" href="css/mainAddDataset2.css">
 	
 <style>
-#project {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
+
+		
+table#holder {
+    border: 5px dashed #CCC;
+    width:400px;
+	height:100 px;
+	align:center;
+    font-family:Verdana;
+}
+table#holder tr:first-child {
+    height:50px;
+    text-align:center;
+}
+table#holder tr:last-child {
+   height:100px;
+   line-height: 50px;
+   margin-left:10px;
+   text-align:center;
+}
+table#holder li img {
+    height: 30px;
+	text-align:center;
 }
 
-#project td, #project th {
-    border: 1px solid #ddd;
-    padding: 8px;
+ul {
+  list-style: none;
 }
 
-#project th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #4CAF50;
-    color: white;
-}
+
 </style>	
 </head>
 <body>
- 
 
 
        <aside id="left-panel" class="left-panel">
         <nav class="navbar navbar-expand-sm navbar-default">
+		
 
             <div class="navbar-header">
+			
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="../../LatesHAT/SIT782/Human%20Activity%20Tracking%20Updated">Human Activity Tracking</a>
+                <a class="navbar-brand" href="./">Human Activity Tracking</a>
                 
             </div>
 
@@ -134,35 +111,52 @@
         </nav>
     </aside>
 
+
     <div id="right-panel" class="right-panel" style="background-image: url(img/header.jpg); ">
 	<a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
-
-       <div class="container-main">
+	
+       <div class="container-upload">
+	   
 	  
-		<div class="details">
+		<div class="details-upload">
 			<div class="form-title-image" style="background-image: url(img/bg-01.jpg);">
 				<span class="form-title-image-1">
-					Analysis Criteria
+					Add Datasets
 				</span>
 	
 			</div>
 
-			
-				<table id = "project">
-				<tr>
-					<th> Criteria ID </th>
-					<th> Criteria Name </th>
-					<th> Order</th>
-					
-				</tr>
-
-				</table>
+			<form class="detail-form">
+				<div> 
+					<form>
+					<table id="holder">
+					<tr>
+					<td>Drop files here</td>
+					</tr>
+					<tr>
+					<td><ul id="fileList"></ul></td>
+					</tr>
+					</table>
+					</form>					
+				</div>				
+				
+				<div class="form-btn">
+					<button class="form-btn-1">
+						<span>
+							Upload
+						</span>
+					</button>
+				</div>
+			</form>
 		</div>
 	</div>
     </div>
+	
 
-       <script src="workspace-assets/js/vendor/jquery-2.1.4.min.js"></script>
-       <script src="workspace-assets/js/plugins.js"></script>
-       <script src="workspace-assets/js/main.js"></script>
+    
+	<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+    <script src="workspace-assets/js/plugins.js"></script>
+	<script src="workspace-assets/js/adddata.js"></script>
+   
 </body>
 </html>

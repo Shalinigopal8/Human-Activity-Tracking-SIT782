@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="workspace-assets/css/style-workspace.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/mainAddCriteria.css">
 
 
 </head>
@@ -55,6 +55,7 @@
                        aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Datasets</a>
                     <ul class="sub-menu children dropdown-menu">
                         <li><i class="fa fa-table"></i><a href="/upload">Add Datasets</a></li>
+                        <li><i class="fa fa-table"></i><a href="/multiUpload">Add Multiple Datasets</a></li>
                     </ul>
                 </li>
                 <li class="menu-item-has-children dropdown">
@@ -113,6 +114,29 @@
                 </div>
 
 
+                <div id="table" class="table-editable">
+
+                    <table id="myTable" class="table" style="color: #808080;" border="1">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>From</th>
+                            <th>To</th>
+
+
+                        </tr>
+                        <tr>
+                            <td contenteditable="true">1</td>
+                            <td contenteditable="true">Sleeping</td>
+                            <td contenteditable="true">0</td>
+                            <td contenteditable="true">99</td>
+
+
+                    </table>
+                    <span><input type="button" onclick="insRow('myTable')" value="Insert row"/></span>
+                </div>
+
+
                 <div class="form-btn">
                     <button class="form-btn-1">
 						<span>
@@ -122,48 +146,27 @@
                 </div>
             </form>
 
-            <table id="myTable" class="table" style="width:50%; color: #808080;">
-                <tr>
-                    <th> Criteria ID</th>
-                    <th> Criteria Name</th>
-
-
-                </tr>
-
-            </table>
         </div>
     </div>
 </div>
 
-<script type="text/javascript">
-    function reqListener() {
-        // console.log(JSON.parse(this.responseText));
-        //let dropDown = [" ","color", "shape", "tool"];
-        let dropDown = JSON.parse(this.responseText);
-        _.each(dropDown, function (each) {
-            let tr = document.createElement("tr");
-            let td1 = document.createElement("td");
-            td1.innerText = each.id;
-            let td2 = document.createElement("td");
-            td2.innerText = each.name;
+<script>
+    function insRow(id) {
+        var filas = document.getElementById("myTable").rows.length;
+        var x = document.getElementById(id).insertRow(filas);
+        var y = x.insertCell(0);
+        var z = x.insertCell(1);
+        var p = x.insertCell(2);
+        var q = x.insertCell(3);
+        y.innerHTML = "<div contenteditable></div>";
+        z.innerHTML = "<div contenteditable></div>";
+        p.innerHTML = "<div contenteditable></div>";
+        q.innerHTML = "<div contenteditable></div>";
 
-            let td3 = document.createElement("td");
-
-            tr.appendChild(td1);
-            tr.appendChild(td2);
-            tr.appendChild(td3);
-            let table = document.querySelector("#myTable");
-            table.appendChild(tr);
-        })
     }
-
-    let oReq = new XMLHttpRequest();
-    oReq.addEventListener("load", reqListener);
-    oReq.open("GET", "/criteriaList");
-    oReq.send();
-
-
 </script>
+<script src="workspace-assets/js/plugins.js"></script>
+<script src="workspace-assets/js/main.js"></script>
 
 
 <script src="workspace-assets/js/vendor/jquery-2.1.4.min.js"></script>

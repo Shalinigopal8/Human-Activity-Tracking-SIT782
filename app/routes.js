@@ -11,23 +11,26 @@ module.exports = function (app, passport) {
     app.get('/', function (req, res) {
         res.render('Home.ejs', {message: ""});
     });
-    app.get('/upload', function (req, res) {
+    app.get('/upload', isLoggedIn, function (req, res) {
         res.render('uploadData.ejs', {message: ""});
     });
     app.get('/about', function (req, res) {
         res.render('about.ejs', {message: ""});
     });
-    app.get('/runExperiment', function (req, res) {
+    app.get('/runExperiment', isLoggedIn, function (req, res) {
         res.render('runExperiment.ejs', {message: ""});
     });
-    app.get('/listCriteria', function (req, res) {
+    app.get('/listCriteria', isLoggedIn, function (req, res) {
         res.render('AnalysisCriteria.ejs', {message: ""});
     });
-    app.get('/listProject', function (req, res) {
+    app.get('/listProject', isLoggedIn, function (req, res) {
         res.render('listProjects.ejs', {message: ""});
     });
-    app.get('/projectParticipants', function (req, res) {
+    app.get('/projectParticipants', isLoggedIn, function (req, res) {
         res.render('ProjectParticipants.ejs', {message: ""});
+    });
+    app.get('/multiUpload', isLoggedIn, function (req, res) {
+        res.render('AddDataset.ejs', {message: ""});
     });
 
     app.get('/unauthorized', function (req, res) {
@@ -145,7 +148,7 @@ module.exports = function (app, passport) {
         }
 
     });
-    app.post('/saveParticipant', function (req, res) {
+    app.post('/saveParticipant', isLoggedIn, function (req, res) {
         if (req && req.body) {
             console.log("request", req.body);
             req.body.userId = req.user._id;
