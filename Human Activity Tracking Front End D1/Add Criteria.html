@@ -1,0 +1,193 @@
+<!doctype html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Add Criteria</title>
+      
+    <link rel="stylesheet" href="workspace-assets/css/bootstrap.min.addcriteria.css">
+    <link rel="stylesheet" href="workspace-assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="workspace-assets/css/style-workspace.css">   
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="css/mainAddCriteria.css">
+	
+	 
+
+
+<style>
+.table-editable {
+  position: relative;
+}
+.table-editable .glyphicon {
+  font-size: 20px;
+}
+
+.table-remove {
+  color: #700;
+  cursor: pointer;
+}
+.table-remove:hover {
+  color: #f00;
+}
+
+
+.table-add {
+  color: #070;
+  cursor: pointer;
+  position: absolute;
+  top: 9px;
+  left: 305px;
+  right: 0;
+}
+.table-add:hover {
+  color: #0b0;
+}
+
+
+</style>
+	
+	
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+       <aside id="left-panel" class="left-panel">
+        <nav class="navbar navbar-expand-sm navbar-default">
+
+            <div class="navbar-header">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="./">Human Activity Tracking</a>
+                
+            </div>
+
+            <div id="main-menu" class="main-menu collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+					<li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-dashboard"></i>My Projects</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-dashboard"></i><a href="ui-buttons.html">Manage Projects</a></li>
+							<li><i class="menu-icon fa fa-dashboard"></i><a href="ui-buttons.html">New Projects</a></li>
+                        </ul>
+                    </li>
+                                        
+					
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Project Participants</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-puzzle-piece"></i><a href="ui-buttons.html">Add Participants</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Datasets</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-table"></i><a href="tables-basic.html">Add Datasets</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Analysis Criteria</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-th"></i><a href="forms-basic.html">Add Criteria</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Run Experiment</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="font-fontawesome.html">Add Experiment</a></li>
+                            
+                        </ul>
+                    </li>
+                               
+                </ul>
+            </div>
+        </nav>
+    </aside>
+
+    <div id="right-panel" class="right-panel" style="background-image: url(img/header.jpg); ">
+	<a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
+
+       <div class="container-main">
+	  
+		<div class="details">
+			<div class="form-title-image" style="background-image: url(img/bg-01.jpg);">
+				<span class="form-title-image-1">
+					Add Criteria 
+				</span>
+	
+			</div>
+
+			<form class="detail-form">
+				<div class="input-text">
+					<span class="label">Criteria ID:</span>
+					<input class="textbox" type="text" name="name" placeholder="Criteria ID">
+					
+				</div>
+
+				<div class="input-text">
+					<span class="label">Criteria Name:</span>
+					<input class="textbox" type="text" name="description" placeholder="Criteria Name">
+				</div>
+
+				<div class="input-text">
+					<span class="label">Field:</span>
+					<input class="textbox" type="text" name="description" placeholder="Field">
+				</div>
+				
+	<div id="table" class="table-editable">
+
+    <table id="myTable" class="table" style="color: #808080;" border="1">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>From</th>
+        <th>To</th>
+		
+		
+      </tr>
+      <tr>
+        <td contenteditable="true">1</td>
+        <td contenteditable="true">Sleeping</td>
+		<td contenteditable="true">0</td>
+		<td contenteditable="true">99</td>  
+		
+       
+     </table>
+	 <span><input type="button" onclick="insRow('myTable')" value="Insert row"/></span>
+  </div>
+  
+
+				<div class="form-btn">
+					<button class="form-btn-1">
+						<span>
+							Next
+						</span>
+					</button>
+				</div>
+			</form>
+		
+	</div>
+    </div>
+
+    <script>
+	function insRow(id) {
+    var filas = document.getElementById("myTable").rows.length;
+    var x = document.getElementById(id).insertRow(filas);
+    var y = x.insertCell(0);
+    var z = x.insertCell(1);
+	var p = x.insertCell(2);
+	var q = x.insertCell(3);
+	y.innerHTML = "<div contenteditable></div>";
+	z.innerHTML = "<div contenteditable></div>";
+	p.innerHTML = "<div contenteditable></div>";
+	q.innerHTML = "<div contenteditable></div>";
+    
+}
+	</script>
+    <script src="workspace-assets/js/plugins.js"></script>
+    <script src="workspace-assets/js/main.js"></script>
+	
+	
+</body>
+</html>
